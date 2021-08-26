@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cat-index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>Trail List</h1>
+ 
+
+<section class="card-container">
+  {% for trail in trails %}
+    <div class="card">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img 
+            src="{% static '' %}" 
+            alt="picture of trail"
+          >
+        </div>
+        <h2 class="card-title">{{ trail.name }}</h2>
+        
+        <p><small>{{ trail.description }}</small></p>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

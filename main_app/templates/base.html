@@ -1,3 +1,5 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +12,7 @@
     href=""
   >
   <title>Happy Hiking</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
   {% block head %}
   {% endblock %}
 </head>
@@ -25,7 +28,8 @@
     </div>
     <nav>
       <ul>
-        <li><a href="/about">About</a></li>
+        <li><a href="/hikes">Hikes</a></li>
+        <li><a href="/trails">Trails</a></li>
       </ul>
     </nav>
   </header>
