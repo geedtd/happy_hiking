@@ -7,3 +7,6 @@ from django.http import HttpResponse
 def home(request):
   return HttpResponse('<h1>Let\'s Get Hiking!</h1>')
 
+def about(request):
+    return render(request, 'about.html')
+
