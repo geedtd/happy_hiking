@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Trail
 
 # Create your views here.
@@ -42,3 +42,10 @@ class TrailCreate(CreateView):
         # Let the CreateView do its job as usual
         return super().form_valid(form)
     
+class TrailUpdate(UpdateView):
+    model = Trail
+    fields = ['length', 'description']
+
+class TrailDelete(DeleteView):
+    model = Trail
+    success_url = '/trails/'

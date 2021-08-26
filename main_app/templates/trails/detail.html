@@ -22,6 +22,10 @@
     <h1>{{ trail.name }}</h1>
     <h3>{{ trail.length }} Miles</h3>
     <p>{{ trail.description }}</p>
+    <div class="trail-actions">
+      <a href="{% url 'trails_update' trail.id %}">Update Trail</a>
+      <a href="{% url 'trails_delete' trail.id %}">Delete Trail</a>
+    </div>
   </div>
 </section>
 
