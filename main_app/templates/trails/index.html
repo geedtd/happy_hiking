@@ -14,6 +14,7 @@
 <section class="card-container">
   {% for trail in trails %}
     <div class="card">
+    <a href="{% url 'trails_detail' trail.id %}">
       <div class="card-content">
         <div class="card-img-container">
           <img 
@@ -25,6 +26,7 @@
         
         <p><small>{{ trail.description }}</small></p>
       </div>
+    </a>
     </div>
   {% endfor %}
 </section>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/trail-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="trail-container">
+  <div class="trail-img">
+    <img 
+      src="{% static '' %}" 
+      alt="A beautiful trail"
+    >
+  </div>
+  <div class="trail-details">
+    <h1>{{ trail.name }}</h1>
+    <h3>{{ trail.length }} Miles</h3>
+    <p>{{ trail.description }}</p>
+  </div>
+</section>
+
+{% endblock %}
