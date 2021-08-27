@@ -1,1 +1,1 @@
-web : gunicorn happyhiking.wsgi 
+web: gunicorn happyhiking.wsgi 
