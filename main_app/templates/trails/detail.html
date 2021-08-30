@@ -3,6 +3,14 @@
 
 {% block head %}
 <link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
+<link 
   rel="stylesheet" 
   type="text/css" 
   href="{% static 'css/trail-detail.css' %}"
@@ -28,5 +36,34 @@
     </div>
   </div>
 </section>
+<div class="reviews-container">
+  <section class="reviews">
+    <div class="subsection-title">
+      <h3>Add Review</h3>
+      <form 
+      method='post'
+      >
+      {% csrf_token %}
+      {{ review_form.as_p}}
+      <button type='submit' >Add Review</button>
+      </form>
+      <h2> RecentReviews</h2>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Review</th><th>Difficulty</th></tr>
+      </thead>
+      <tbody>
+        {% for review in trail.review_set.all %}
+          <tr>
+            <td>{{review.date}}</td>
+            <td>{{review.text}}</td>
+            <td>{{review.get_difficulty_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
 
 {% endblock %}
