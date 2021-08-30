@@ -9,4 +9,5 @@ urlpatterns = [
     path('trails/create/', views.TrailCreate.as_view(), name='trails_create'),
     path('trails/<int:pk>/update/', views.TrailUpdate.as_view(), name='trails_update'),
     path('trails/<int:pk>/delete/', views.TrailDelete.as_view(), name='trails_delete'),
+    path('trails/<int:trail_id>/add_review/', views.add_review, name='add_review'),
 ]

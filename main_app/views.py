@@ -24,6 +24,13 @@ def trails_detail(request, trail_id):
         'trail': trail, 'review_form': review_form
         })
 
+def add_review(request, trail_id):
+    form = ReviewForm(request.POST)
+    if form.is_valid():
+        new_review = form.save(commit=False)
+        new_review.trail_id = trail_id
+        new_review.save()
+
 class TrailCreate(CreateView):
     model = Trail
     fields = ['name','length','description']
