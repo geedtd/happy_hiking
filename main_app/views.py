@@ -10,8 +10,9 @@ import boto3
 S3_BASE_URL = 'https://s3.us-west-1.amazonaws.com/'
 BUCKET = 'happyhiking'
 # Define the home view
-def add_photo(request, cat_id):
+def add_photo(request, review_id):
   # photo-file will be the "name" attribute on the <input type="file">
+  trails = Trail.objects.all()
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
     s3 = boto3.client('s3')
@@ -33,7 +34,7 @@ def add_photo(request, cat_id):
       photo.save()
     except Exception as err:
       print('An error occurred uploading file to S3: %s' % err)
-  return redirect('trails_detail', trail_id=trail_id)
+  return render(request, 'trails/index.html', {'trails': trails})
 
 class Home(LoginView):
   template_name = 'home.html'
