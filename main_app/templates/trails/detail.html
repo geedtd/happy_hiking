@@ -15,17 +15,24 @@
   type="text/css" 
   href="{% static 'css/trail-detail.css' %}"
 />
-<script defer src="{% static 'js/cat-detail.js' %}"></script>
+<script defer src="{% static 'js/review-detail.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 
 <section class="trail-container">
   <div class="trail-img">
-    <img 
-      src="{% static '' %}" 
-      alt="A beautiful trail"
-    >
+    {% if review.photo.url %}
+      <img 
+        src="{{review.photo.url}}" 
+        alt="A photo of {{trail.name}}"
+        class="usr-img"
+      >
+    {% else %}
+      <img  
+        alt="Upload did not work"
+      >
+    {% endif %}
   </div>
   <div class="trail-details">
     <h1>{{ trail.name }}</h1>
@@ -35,6 +42,20 @@
       <a href="{% url 'trails_update' trail.id %}">Update Trail</a>
       <a href="{% url 'trails_delete' trail.id %}">Delete Trail</a>
     </div>
+    <h3>Change {{ trail.name }}'s photo</h3>
+    <p id="file-name"></p>
+    <form 
+      action="{% url 'add_photo' trail.id %}"
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      {% csrf_token %}
+      <label class="btn secondary">
+        Choose photo
+        <input type="file" name="photo-file" id="file-input">
+      </label>
+      <button type="submit" class="btn submit">Upload Photo</button>
+    </form>
   </div>
 </section>
 <div class="reviews-container">
