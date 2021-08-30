@@ -18,19 +18,23 @@ class Trail(models.Model):
 EXPERIENCE = (
     ('B', 'Beginner'),
     ('I', 'Intermidiate'),
-    ('E', 'Experience'),
+    ('E', 'Experienced'),
 )
 
 class Review(models.Model):
     date = models.DateField('Hike Date')
     text = models.TextField(max_length=500)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     difficulty = models.CharField(
         max_length=1,
         choices= EXPERIENCE,
         default=EXPERIENCE[0][0]
     )
 
-    hike = models.ForeignKey(Trail, on_delete=models.CASCADE)
+    trail = models.ForeignKey(Trail, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.get_difficulty_display()} on {self.date}"
+
+    # class Meta:
+    #     ordering = ['-date']

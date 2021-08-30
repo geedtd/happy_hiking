@@ -49,8 +49,9 @@
       {{ review_form.as_p}}
       <button type='submit' >Add Review</button>
       </form>
-      <h2> RecentReviews</h2>
+      <h2> Recent Reviews</h2>
     </div>
+    {% if trail.review_set.all.count %}
     <table>
       <thead>
         <tr><th>Date</th><th>Review</th><th>Difficulty</th></tr>
@@ -65,6 +66,9 @@
         {% endfor %}
       </tbody>
     </table>
+    {% else %}
+    <p>Be the first to review {{ trail.name }}, add your experience above!</p>
+    {% endif %}
   </section>
 </div>
 

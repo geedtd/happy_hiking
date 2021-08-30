@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Trail
@@ -30,6 +30,7 @@ def add_review(request, trail_id):
         new_review = form.save(commit=False)
         new_review.trail_id = trail_id
         new_review.save()
+    return redirect('trails_detail', trail_id=trail_id)
 
 class TrailCreate(CreateView):
     model = Trail
