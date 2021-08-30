@@ -36,5 +36,12 @@ class Review(models.Model):
     def __str__(self):
         return f"{self.get_difficulty_display()} on {self.date}"
 
-    # class Meta:
-    #     ordering = ['-date']
+    class Meta:
+        ordering = ['-date']
+
+class Photo(models.Model):
+    url = models.CharField(max_length=250)
+    cat = models.OneToOneField(Review, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for review_id: {self.review_id} @{self.url}"
