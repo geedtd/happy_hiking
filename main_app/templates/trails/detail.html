@@ -42,20 +42,6 @@
       <a href="{% url 'trails_update' trail.id %}">Update Trail</a>
       <a href="{% url 'trails_delete' trail.id %}">Delete Trail</a>
     </div>
-    <h3>Change {{ trail.name }}'s photo</h3>
-    <p id="file-name"></p>
-    <form 
-      action="{% url 'add_photo' trail.id %}"
-      enctype="multipart/form-data"
-      method="POST"
-    >
-      {% csrf_token %}
-      <label class="btn secondary">
-        Choose photo
-        <input type="file" name="photo-file" id="file-input">
-      </label>
-      <button type="submit" class="btn submit">Upload Photo</button>
-    </form>
   </div>
 </section>
 <div class="reviews-container">
@@ -70,8 +56,26 @@
       {{ review_form.as_p}}
       <button type='submit' >Add Review</button>
       </form>
-      <h2> Recent Reviews</h2>
+      <div class='photo-form'>
+    <h3>Change {{ trail.name }}'s photo</h3>
+    <p id="file-name"></p>
+    <form 
+      action="{% url 'add_photo' trail.id %}"
+      enctype="multipart/form-data"
+      method="POST"
+      
+    >
+      {% csrf_token %}
+      <label class="btn secondary">
+        Choose photo
+        <input type="file" name="photo-file" id="file-input">
+      </label>
+      <button type="submit" class="btn submit">Upload Photo</button>
+    </form>
+      </div>
     </div>
+    <div class='user-reviews'>
+      <h2> Recent Reviews</h2>
     {% if trail.review_set.all.count %}
     <table>
       <thead>
@@ -90,6 +94,7 @@
     {% else %}
     <p>Be the first to review {{ trail.name }}, add your experience above!</p>
     {% endif %}
+    </div>
   </section>
 </div>
 
