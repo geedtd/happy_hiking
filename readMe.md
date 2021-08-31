@@ -11,8 +11,9 @@
 - [ERD](https://whimsical.com/5-3rNoBm93sQkeRJv35A2SuC) 
 
 #### App Images:
-![](../happyhiking/main_app/static/images/addForm.png)
-![](../happyhiking/main_app/static/images/Menu.png)
+<img src='https://i.imgur.com/nkfiz1L.png' height='300' >
+<img src='https://i.imgur.com/opwzPrT.png' height='300' >
+
 
 #### Credit: Login Lottie Animation
 - Google Fonts
