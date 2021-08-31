@@ -1,5 +1,5 @@
 .trail-container {
-    border: 2px solid black;
+    border: rgb(36, 116, 248) solid 2px;
     padding: 35px 30px;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@ a {
 }
 .reviews-container{
     margin: 1vh 0 1vh 0;
-    border: 2px solid black;
+    border: 2px solid orange;
     padding: 35px 30px;
     display: flex;
     flex-direction: column;

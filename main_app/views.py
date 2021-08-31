@@ -51,7 +51,7 @@ def about(request):
 
 @login_required
 def trails_index(request):
-    trails = Trail.objects.all()
+    trails = Trail.objects.filter(user=request.user)
     return render(request, 'trails/index.html', {'trails': trails})
 
 @login_required

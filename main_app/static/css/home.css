@@ -23,7 +23,9 @@ flex-direction: column;
 display: none;
 }
 
-
+.lil-mountain {
+    height: 30vh;
+}
 
 .login {
 display: flex;
