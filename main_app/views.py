@@ -1,8 +1,11 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView
 from .forms import ReviewForm
 from .models import Trail, Review, Photo
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 import uuid
 import boto3
 
@@ -65,12 +68,9 @@ class TrailCreate(CreateView):
     model = Trail
     fields = ['name','length','description']
 
-        # This inherited method is called when a
-    # valid cat form is being submitted
+  
     def form_valid(self, form):
-        # Assign the logged in user (self.request.user)
-        form.instance.user = self.request.user  # form.instance is the cat
-        # Let the CreateView do its job as usual
+        form.instance.user = self.request.user
         return super().form_valid(form)
     
 class TrailUpdate(UpdateView):
@@ -81,3 +81,21 @@ class TrailDelete(DeleteView):
     model = Trail
     success_url = '/trails/'
 
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in
+      login(request, user)
+      return redirect('trails_index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'signup.html', context)

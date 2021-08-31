@@ -11,4 +11,5 @@ urlpatterns = [
     path('trails/<int:pk>/delete/', views.TrailDelete.as_view(), name='trails_delete'),
     path('trails/<int:trail_id>/add_review/', views.add_review, name='add_review'),
     path('reviews/<int:review_id>/add_photo/', views.add_photo, name='add_photo'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
