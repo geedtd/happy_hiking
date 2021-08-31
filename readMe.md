@@ -10,8 +10,9 @@
 >ERD
 - [ERD](https://whimsical.com/5-3rNoBm93sQkeRJv35A2SuC) 
 
-
-
+#### App Images:
+![](../happyhiking/main_app/static/images/addForm.png)
+![](../happyhiking/main_app/static/images/Menu.png)
 
 #### Credit: Login Lottie Animation
 - Google Fonts
