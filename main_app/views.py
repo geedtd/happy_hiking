@@ -6,6 +6,8 @@ from .forms import ReviewForm
 from .models import Trail, Review, Photo
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 
@@ -13,6 +15,7 @@ import boto3
 S3_BASE_URL = 'https://s3.us-west-1.amazonaws.com/'
 BUCKET = 'happyhiking'
 # Define the home view
+@login_required
 def add_photo(request, review_id):
   # photo-file will be the "name" attribute on the <input type="file">
   trails = Trail.objects.all()
@@ -42,13 +45,16 @@ def add_photo(request, review_id):
 class Home(LoginView):
   template_name = 'home.html'
 
+
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def trails_index(request):
     trails = Trail.objects.all()
     return render(request, 'trails/index.html', {'trails': trails})
 
+@login_required
 def trails_detail(request, trail_id):
     trail = Trail.objects.get(id=trail_id)
     review_form = ReviewForm()
@@ -56,6 +62,7 @@ def trails_detail(request, trail_id):
         'trail': trail, 'review_form': review_form
         })
 
+@login_required
 def add_review(request, trail_id):
     form = ReviewForm(request.POST)
     if form.is_valid():
@@ -64,7 +71,7 @@ def add_review(request, trail_id):
         new_review.save()
     return redirect('trails_detail', trail_id=trail_id)
 
-class TrailCreate(CreateView):
+class TrailCreate(LoginRequiredMixin, CreateView):
     model = Trail
     fields = ['name','length','description']
 
@@ -73,11 +80,11 @@ class TrailCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-class TrailUpdate(UpdateView):
+class TrailUpdate(LoginRequiredMixin, UpdateView):
     model = Trail
     fields = ['length', 'description']
 
-class TrailDelete(DeleteView):
+class TrailDelete(LoginRequiredMixin, DeleteView):
     model = Trail
     success_url = '/trails/'
 
