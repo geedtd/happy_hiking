@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import environ
+import os
 env = environ.Env()
 environ.Env.read_env()
 
@@ -31,6 +32,8 @@ DEBUG = env('DEBUG') == 'True'
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = []
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # Application definition
