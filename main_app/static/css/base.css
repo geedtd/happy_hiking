@@ -1,7 +1,37 @@
 body {
-    background-color: palegoldenrod;
+    background-color: #fffed9;
 }
 
 a {
     text-decoration: none;
+    font-family: 'Hina Mincho', serif;
+}
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav li {
+    padding: 5px 8px;
+}
+nav {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    flex-wrap: nowrap;
+    font-size: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family: 'Hina Mincho', serif;
 }

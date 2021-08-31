@@ -21,7 +21,7 @@
 {% block content %}
 
 <section class="trail-container">
-  <div class="trail-img">
+  {% comment %} <div class="trail-img">
     {% if review.photo.url %}
       <img 
         src="{{review.photo.url}}" 
@@ -33,7 +33,7 @@
         alt="Upload did not work"
       >
     {% endif %}
-  </div>
+  </div> {% endcomment %}
   <div class="trail-details">
     <h1>{{ trail.name }}</h1>
     <h3>{{ trail.length }} Miles</h3>
@@ -56,7 +56,7 @@
       {{ review_form.as_p}}
       <button type='submit' >Add Review</button>
       </form>
-      <div class='photo-form'>
+      {% comment %} <div class='photo-form'>
     <h3>Change {{ trail.name }}'s photo</h3>
     <p id="file-name"></p>
     <form 
@@ -72,21 +72,33 @@
       </label>
       <button type="submit" class="btn submit">Upload Photo</button>
     </form>
-      </div>
+      </div> {% endcomment %}
     </div>
     <div class='user-reviews'>
       <h2> Recent Reviews</h2>
     {% if trail.review_set.all.count %}
     <table>
       <thead>
-        <tr><th>Date</th><th>Review</th><th>Difficulty</th></tr>
+        <tr><th>Date</th></tr>
       </thead>
       <tbody>
         {% for review in trail.review_set.all %}
           <tr>
             <td>{{review.date}}</td>
-            <td>{{review.text}}</td>
+            
+            </tr>
+            <thead>
+        <tr><th>Difficulty</th></tr>
+            </thead>
+            <tr>
+            
             <td>{{review.get_difficulty_display}}</td>
+            </tr>
+          <thead>
+        <tr><th>Review</th></tr>
+          </thead>
+          <tr>
+            <td>{{review.text}}</td>
           </tr>
         {% endfor %}
       </tbody>
