@@ -9,7 +9,7 @@
     background-color: white;
 }
 
-a {
+a, p, h1, h2, h3 {
     text-decoration: none;
     font-family: 'Hina Mincho', serif;
 }
@@ -38,7 +38,7 @@ th {
 }
 .btn {
     
-    padding: 4px 8px;
+    padding: 2px 8px;
     border-radius: 6px;
     border-width: 2px;
     border-style: solid;

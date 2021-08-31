@@ -13,20 +13,11 @@
     {% else %}
     <h1>Add a Trail</h1>
     {% endif %}
-    <img src="{% static '' %}" alt="A lil mountain"/>
+    <img class='mtn-form' src="{% static 'images/mtn-form.png' %}" alt="A lil mountain"/>
 </div>
-{% comment %} 
-  Leaving the action empty makes the form post to the same url used to display it
-{% endcomment %}
 <form action="" method="post" class="form-container">
-  {% comment %} 
-    Django requires the following for security purposes
-  {% endcomment %}
   {% csrf_token %}
   <table>
-    {% comment %}
-      Render the inputs inside of <tr>s & <td>s
-    {% endcomment %}
     {{ form.as_table }}
   </table>
   <button type="submit" class="btn submit">Submit!</button>
